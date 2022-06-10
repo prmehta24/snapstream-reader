@@ -3,6 +3,7 @@
 
 #include <cstring>
 #include <exception>
+#include <stdexcept>
 #include <string>
 #include <map>
 #include <queue>
@@ -11,8 +12,8 @@
 namespace snap {
 
   enum TokenType { STRING, OPERATOR };
-  
-  class Expression {    
+
+  class Expression {
   public:
     // first is precendence, second is associativity
     std::map<std::string, std::pair<int, bool>> operator_precedence;

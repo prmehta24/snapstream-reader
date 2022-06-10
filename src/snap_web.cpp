@@ -1,9 +1,9 @@
 #include <algorithm>
 #include <cctype>
-#include <chrono> 
+#include <chrono>
 #include <iostream>
 #include <map>
-#include <random> 
+#include <random>
 #include <string>
 #include <vector>
 
@@ -54,7 +54,7 @@ namespace snap {
       std::transform(s.begin(), s.end(), s.begin(), ::tolower);
       return s;
     }
-    
+
     std::map<std::string, std::string> parse_query_string(const std::string &query_string) {
       std::map<std::string, std::string> kv;
       std::vector<std::string> entries;
@@ -103,7 +103,7 @@ namespace snap {
         if (*it == "") {
           it = rows.erase(it);
         } else {
-          ++it;        
+          ++it;
         }
       }
       int N = rows.size();      // number of countries
@@ -135,7 +135,7 @@ namespace snap {
         } else {
           json << "]]}";
         }
-      }      
+      }
       return json.str();
     }
 
@@ -150,7 +150,7 @@ namespace snap {
         if (*it == "") {
           it = rows.erase(it);
         } else {
-          ++it;        
+          ++it;
         }
       }
       int N = rows.size();      // number of countries
@@ -182,12 +182,12 @@ namespace snap {
         } else {
           json << "]]}";
         }
-      }      
-      return json.str();      
+      }
+      return json.str();
     }
 
     void print_header() {
-      std::cout << R"ZZZ(Content-type: text/html; charset=iso-8859-1
+      std::cout << R"ZZZ(Content-type: text/html; charset=utf-8
 
 <html>
 <head>
@@ -221,19 +221,19 @@ text-align: center;
     }
 
     void close_html() {
-      std::cout << "</body>\n</html>" << std::endl; 
+      std::cout << "</body>\n</html>" << std::endl;
     }
 
     void redirect(const std::string &href) {
       std::cout << "<script charset=\"utf-8\">"
                 << "window.location.href='"
                 << href << "'"
-                << "</script>" << std::endl;      
+                << "</script>" << std::endl;
     }
 
     void print_excerpts(std::vector<snap::Excerpt> &excerpts,
                         int n, bool random) {
-      if (random) { 
+      if (random) {
         unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
         std::shuffle(excerpts.begin(), excerpts.end(), std::default_random_engine(seed));
       }
@@ -254,8 +254,8 @@ text-align: center;
            ++it) {
         std::cout << *it << ", ";
       }
-      std::cout << "<br/>" << e.text << "<br/>";    
-      std::cout << "</div>" << std::endl;  
+      std::cout << "<br/>" << e.text << "<br/>";
+      std::cout << "</div>" << std::endl;
     }
 
     void print_matrix(std::map<std::string, std::map<std::string, std::tuple<int, int, int>>> &results,
@@ -263,7 +263,7 @@ text-align: center;
                       std::ostream &outputStream, bool header, char sep) {
       std::vector<std::string> keys;
       for (auto it = results.begin(); it != results.end(); ++it) { keys.push_back(it -> first); }
-      
+
       // print matching programs
       if (header) {
         outputStream << sep;
@@ -283,7 +283,7 @@ text-align: center;
             outputStream << stat << sep;
           } else {
             outputStream << stat << std::endl;
-          }          
+          }
         }
       }
     }
@@ -319,7 +319,7 @@ text-align: center;
     std::string create_link(std::string href, std::string text) {
       return "<a href=\"" + href + "\">" + text + "</a>";
     }
-    
+
     std::string create_link(std::string href, std::string text, std::string id) {
       return "<a id=\"" + id + "\" href=\"" + href + "\">" + text + "</a>";
     }
