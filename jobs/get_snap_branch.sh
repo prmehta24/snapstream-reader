@@ -10,7 +10,7 @@ fi
 
 rm -rf snapstream-reader-$BRANCH
 rm $BRANCH
-wget https://github.com/ppham27/snapstream-reader/archive/$BRANCH.zip
+wget https://github.com/prmehta24/snapstream-reader/archive/$BRANCH.zip
 unzip $BRANCH
 
 # compiling
